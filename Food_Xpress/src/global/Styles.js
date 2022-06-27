@@ -15,9 +15,18 @@ export const COLORS = {
 
 export const parameters ={
     headerHeight: 45,
+    padding: 25,
 }
 
 export const tittle = {
     color: COLORS.button,
     fontSize: 16
+}
+
+export const SIZES = {
+    // global sizes
+    base: 8,
+    font: 14,
+    radius: 12,
+    padding: 24,
 }

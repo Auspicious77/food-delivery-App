@@ -4,7 +4,7 @@ import { COLORS } from './Styles';
 
 export default function FormInput({
   labelText = '',
-  
+  ref = null,
   placeholderText = '',
   onChangeText = null,
   value = null,

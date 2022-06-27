@@ -14,9 +14,10 @@ export default function FormButton({
       style={{
         paddingVertical: 10,
         backgroundColor: isPrimary ? COLORS.button : COLORS.white,
-        borderWidth: 1,
-        borderColor: COLORS.black,
         borderRadius: 11,
+        height: 45,
+        borderWidth: 1,
+        borderColor: COLORS.button,
         ...style,
       }}
       onPress={handleOnPress}
@@ -26,7 +27,7 @@ export default function FormButton({
       <Text style={{
         textAlign: 'center',
         fontSize: 18,
-        color: isPrimary ? COLORS.white : COLORS.blue
+        color: isPrimary ? COLORS.white : COLORS.button
       }}>{labelText}</Text>
 
     </TouchableOpacity>
