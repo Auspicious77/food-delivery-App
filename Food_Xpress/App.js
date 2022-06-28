@@ -6,19 +6,20 @@ import {
   Text,
   View,
 } from 'react-native';
-import COLORS from './src/global/Styles'
-import Header from './src/components/Header';
-import SigninScreen from './src/screens/AuthScreens/SigninScreen';
+import RootNavigator from './src/navigation/RootNavigator';
+
 
 
 
 
 export default function App(){
   return(
+   
     <View style = {styles.container}>
     <StatusBar barStyle= "light-content" backgroundColor={'#ff8c52'}/>
-     <SigninScreen/>
+     <RootNavigator/>
     </View>
+  
   )
 }
 

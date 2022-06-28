@@ -3,7 +3,7 @@ import React from 'react'
 import { COLORS, parameters } from '../global/Styles'
 import { Icon } from "@rneui/themed";
 
-export default function Header({tittle, name}) {
+export default function Header({tittle, name, navigation}) {
   return (
     <View style= {styles.container}>
        <View style={{marginLeft: 20,  marginVertical: 10}}>
@@ -11,7 +11,7 @@ export default function Header({tittle, name}) {
             name = {name}
             color={COLORS.headertxt}
             size={28}
-            onPress={()=>{}}
+            onPress={()=>{navigation.goBack()}}
         />
         </View>
         <View>

@@ -11,7 +11,7 @@ import { SocialIcon } from '@rneui/themed';
 import { TouchableOpacity } from 'react-native';
 
 
-export default function SigninScreen() {
+export default function SigninScreen({navigation}) {
   const [textinput2focused, setTextinput2focused] = useState(false)
   const textInput1 = useRef(1)
   const textInput2 = useRef(2)
@@ -19,7 +19,7 @@ export default function SigninScreen() {
 
   return (
     <View style={styles.container}>
-      <Header tittle="My Account" name='arrow-back' />
+      <Header tittle="My Account" name='arrow-back' navigation={navigation}/>
       <View style={{ marginHorizontal: SIZES.base, marginVertical: SIZES.padding }}>
         <View>
           <Text style={{ fontSize: 30, color: COLORS.button }}>Sign-in</Text>
@@ -68,7 +68,7 @@ export default function SigninScreen() {
 
       {/* Button */}
       <View style={{ marginHorizontal: SIZES.base, marginVertical: SIZES.padding }}>
-        <FormButton labelText='SIGN IN'/>
+        <FormButton labelText='SIGN IN' handleOnPress={()=>{navigation.navigate('Homescreen')}}/>
       </View>
 
 
