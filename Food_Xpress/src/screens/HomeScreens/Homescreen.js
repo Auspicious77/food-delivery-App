@@ -12,7 +12,7 @@ import FoodCard from '../../components/FoodCard'
 import CountDown from 'react-native-countdown-component'
 
 
-export default function Homescreen() {
+export default function Homescreen({ navigation }) {
   const [delivery, setDelivery] = useState(true)
   const [indexCheck, setIndexCheck] = useState([0])
 
@@ -25,15 +25,20 @@ export default function Homescreen() {
         showsVerticalScrollIndicator={true}
       >
         {/* Delivery */}
-        <View style={{backgroundColor: COLORS.white, paddingBottom: 5}}>
+        <View style={{ backgroundColor: COLORS.white, paddingBottom: 5 }}>
           <View style={{ marginTop: 10, flexDirection: 'row', justifyContent: 'space-evenly' }}>
             <TouchableOpacity onPress={() => { setDelivery(true) }}>
               <View style={{ ...styles.deliverybutton, backgroundColor: delivery ? COLORS.button : COLORS.grey5 }}>
                 <Text style={styles.deliverytext}>Delivery</Text>
               </View>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => { setDelivery(false) }}>
+                    
+              {/* PickUP */}
+            <TouchableOpacity
+              onPress={() => {
+                setDelivery(false)
+                navigation.navigate('MapScreen')
+              }}>
               <View style={{ ...styles.deliverybutton, backgroundColor: delivery ? COLORS.grey5 : COLORS.button }}>
                 <Text style={styles.deliverytext}>Pick Up</Text>
               </View>
@@ -114,19 +119,19 @@ export default function Homescreen() {
 
         <View>
 
-        {/* CountDown */}
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{marginLeft: 15, fontSize: 16, marginTop: -10, marginRight: 5}}
-          >Options changing in</Text>
-          <CountDown
-            until={3600}
-            size={14}
-            digitStyle={{backgroundColor: COLORS.lightgreen }}
-            digitTxtStyle={{color: COLORS.white}}
-            timeToShow={['M', 'S']}
-            timeLabels={{m: 'Min', s: 'Sec'}}
-          />
-        </View>
+          {/* CountDown */}
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ marginLeft: 15, fontSize: 16, marginTop: -10, marginRight: 5 }}
+            >Options changing in</Text>
+            <CountDown
+              until={3600}
+              size={14}
+              digitStyle={{ backgroundColor: COLORS.lightgreen }}
+              digitTxtStyle={{ color: COLORS.white }}
+              timeToShow={['M', 'S']}
+              timeLabels={{ m: 'Min', s: 'Sec' }}
+            />
+          </View>
 
           <FlatList
             style={{ marginTop: 10, marginBottom: 10 }}
@@ -179,15 +184,16 @@ export default function Homescreen() {
           />
         </View>
 
-       {/* Resturants in your area */}
+        {/* Resturants in your area */}
         <View>
-        <View style={styles.categoriesview}>
-          <Text style={styles.headertext}>Restaurants in your Area</Text>
-        </View>
+          <View style={styles.categoriesview}>
+            <Text style={styles.headertext}>Restaurants in your Area</Text>
+          </View>
           {
+
             resturantData.map(item => (
-              <View key={item.id} style={{paddingBottom: 20}}>
-              <FoodCard
+              <View key={item.id} style={{ paddingBottom: 20 }}>
+                <FoodCard
                   screenWidth={SCREEN_WIDTH * 0.95}
                   images={item.image}
                   resturantName={item.resturantName}
@@ -195,7 +201,7 @@ export default function Homescreen() {
                   businessAddress={item.businessAddress}
                   averageReviews={item.averageReview}
                   numberOfReviews={item.numberofReviews}
-                /> 
+                />
               </View>
             ))
           }
@@ -203,6 +209,22 @@ export default function Homescreen() {
         </View>
 
       </ScrollView>
+
+      {/* Floating button */}
+      {
+        delivery &&
+        <View style={styles.floatbotton}>
+          <TouchableOpacity onPress={() => { navigation.navigate('MapScreen') }}>
+            <Icon
+              name='place'
+              type='material'
+              size={32}
+              color={COLORS.button}
+            />
+            <Text style={{ color: COLORS.grey2, textAlign: 'center' }}>map</Text>
+          </TouchableOpacity>
+        </View>
+      }
     </View>
 
   )
@@ -263,5 +285,17 @@ const styles = StyleSheet.create({
   smallcardtextSelected: {
     fontWeight: 'bold',
     color: COLORS.white
+  },
+  floatbotton: {
+    position: 'absolute',
+    bottom: 60,
+    right: 15,
+    backgroundColor: COLORS.white,
+    elevation: 10,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: 'center'
+
   }
 })

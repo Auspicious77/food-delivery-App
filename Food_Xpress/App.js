@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-native-gesture-handler';
 import {
  
   StatusBar,
@@ -7,6 +8,8 @@ import {
   View,
 } from 'react-native';
 
+import AuthStack from './src/navigation/AuthStack';
+import { NavigationContainer } from '@react-navigation/native'
 import RootNavigator from './src/navigation/RootNavigator';
 
 
@@ -18,7 +21,9 @@ export default function App(){
    
     <View style = {styles.container}>
     <StatusBar barStyle= "light-content" backgroundColor={'#ff8c52'}/>
+    
      <RootNavigator/>
+    
     </View>
   
   )

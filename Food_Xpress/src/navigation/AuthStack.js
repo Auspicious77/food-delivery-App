@@ -3,7 +3,10 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import SigninScreen from '../screens/AuthScreens/SigninScreen';
 import WelcomeScreen from '../screens/AuthScreens/WelcomeScreen';
-import RootClientTabs from './RootClientTabs'
+import HomeStack from './HomeStack';
+import MapScreen from '../screens/HomeScreens/MapScreen';
+import DrawerNavigator from './DrawerNavigator';
+
 
 
 const stack = createNativeStackNavigator();
@@ -30,13 +33,31 @@ export default function AuthStack() {
       />
 
       <stack.Screen
-        name='RootClientTabs'
-        component={RootClientTabs}
+        name='DrawerNavigator'
+        component={DrawerNavigator}
         options={{
           headerShown: false
-
         }}
       />
+
+      <stack.Screen
+        name='HomeStack'
+        component={HomeStack}
+        options={{
+          headerShown: false
+        }}
+      />
+
+      <stack.Screen
+        name='MapScreen'
+        component={MapScreen}
+        options={{
+          headerShown: false
+        }}
+      />
+
+      
+
 
 
     </stack.Navigator>

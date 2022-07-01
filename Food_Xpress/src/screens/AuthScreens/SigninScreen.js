@@ -68,7 +68,7 @@ export default function SigninScreen({navigation}) {
 
       {/* Button */}
       <View style={{ marginHorizontal: SIZES.base, marginVertical: SIZES.padding }}>
-        <FormButton labelText='SIGN IN' handleOnPress={()=>{navigation.navigate('RootClientTabs')}}/>
+        <FormButton labelText='SIGN IN' handleOnPress={()=>{navigation.navigate('DrawerNavigator')}}/>
       </View>
 
 
