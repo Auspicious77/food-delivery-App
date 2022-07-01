@@ -10,7 +10,8 @@ export const COLORS = {
     bar: '#ff8c52',
     headertxt: 'white',
     black: '#000',
-    white: '#fff'
+    white: '#fff',
+    lightgreen: '#66DF48'
 }
 
 export const parameters ={

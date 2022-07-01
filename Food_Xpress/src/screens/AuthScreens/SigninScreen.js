@@ -32,7 +32,7 @@ export default function SigninScreen({navigation}) {
 
         {/* Email */}
         <View>
-          <FormInput placeholderText='Email' ref={textInput1} />
+          <FormInput placeholderText='Email'/>
         </View>
 
         {/* Password */}
@@ -68,7 +68,7 @@ export default function SigninScreen({navigation}) {
 
       {/* Button */}
       <View style={{ marginHorizontal: SIZES.base, marginVertical: SIZES.padding }}>
-        <FormButton labelText='SIGN IN' handleOnPress={()=>{navigation.navigate('Homescreen')}}/>
+        <FormButton labelText='SIGN IN' handleOnPress={()=>{navigation.navigate('RootClientTabs')}}/>
       </View>
 
 
