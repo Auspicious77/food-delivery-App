@@ -9,6 +9,8 @@ import { useState, useRef } from 'react'
 import FormButton from '../../global/FormButton';
 import { SocialIcon } from '@rneui/themed';
 import { TouchableOpacity } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+
 
 
 export default function SigninScreen({navigation}) {
@@ -37,14 +39,14 @@ export default function SigninScreen({navigation}) {
 
         {/* Password */}
         <View style={styles.password}>
-          <Animated.View animation={textinput2focused? "" : "fadeInLeft"} duration={400}>
+          <Animatable.View animation={textinput2focused? "" : "fadeInLeft"} duration={400}>
             <Icon
               name="lock"
               iconStyle={{ color: COLORS.grey3 }}
               type='material'
             />
 
-          </Animated.View>
+          </Animatable.View>
 
           <TextInput placeholder='Password' style={styles.input} ref={textInput2}
             onFocus={() => {
@@ -55,20 +57,20 @@ export default function SigninScreen({navigation}) {
             }}
           />
 
-          <Animated.View animation={textinput2focused ? "" : "fadeInLeft"} duration={400}>
+          <Animatable.View animation={textinput2focused ? "" : "fadeInLeft"} duration={400}>
             <Icon
               name="visibility-off"
               iconStyle={{ color: COLORS.grey3 }}
               type='material'
             />
 
-          </Animated.View>
+          </Animatable.View>
         </View>
       </View>
 
       {/* Button */}
       <View style={{ marginHorizontal: SIZES.base, marginVertical: SIZES.padding }}>
-        <FormButton labelText='SIGN IN' handleOnPress={()=>{navigation.navigate('DrawerNavigator')}}/>
+        <FormButton labelText='SIGN IN' handleOnPress={()=>{navigation.navigate('Tabs')}}/>
       </View>
 
 

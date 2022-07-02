@@ -6,6 +6,8 @@ import WelcomeScreen from '../screens/AuthScreens/WelcomeScreen';
 import MapScreen from '../screens/HomeScreens/MapScreen';
 import DrawerNavigator from './DrawerNavigator';
 import SearchScreens from '../screens/HomeScreens/SearchScreens';
+import Tabs from './Tabs';
+
 
 
 
@@ -48,6 +50,16 @@ export default function AuthStack() {
           headerShown: false
         }}
       />
+
+<stack.Screen
+        name='Tabs'
+        component={Tabs}
+        options={{
+          headerShown: false
+        }}
+      />
+
+
 
       
 <stack.Screen

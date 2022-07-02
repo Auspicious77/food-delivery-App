@@ -41,3 +41,27 @@ export const resturantData = [
     {name: 'Salad', price: 70.60, image: images.salad1}
     ], id: 4},
 ]
+
+
+export const menuData = [
+    
+    {title:"BEEF",special:false,key:0, },
+    {title:"CHICKEN", special:false,key:1},
+    {title:"VEGGIE BURGER",special:false ,key:2},
+    {title:"FRIES& CORN",special:false ,key:3},
+    {title:"SALADS",special:false,key:4},
+    {title:"HAPPY MEALS",special:false,key:5},
+    {title:"SAHRE BOX",special:false,key:6},
+    {title:"MILKSHAKES",special:false,key:7},
+    {title:"COLD DRINKS",special:false,key:8},
+    {title:"DESSERTS",special:false,key:9},
+    {title:"HOT DRINKS",special:false,key:10},
+  
+    ] ;
+  
+  export const specialData =[
+    {title:"LIMITED OFFER",key:0},
+    {title:"GO CHILLI",key:1},
+    {title:"GO CHEESE",key:2},
+    {title:"MCCHICKEN DELUXE PROMO",key:3},
+  ];    

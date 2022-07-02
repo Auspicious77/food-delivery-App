@@ -12,7 +12,9 @@ const drawer = createDrawerNavigator();
 
 export default function DrawerNavigator(){
     return(
-        <drawer.Navigator>
+        <drawer.Navigator
+        drawerContent={props => <DrawerContent {...props}/>}
+        >
           <drawer.Screen
                 name='Tabs'
                 component={Tabs}

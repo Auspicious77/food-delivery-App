@@ -5,12 +5,26 @@ import { Icon } from '@rneui/themed';
 import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 import { filterData } from './Data';
+import filter from 'lodash/filter'
 
 export default function SearchComponent({navigation}) {
     const [data, setData] = useState([...filterData])
     const [modalVisible, setmodalVisible] = useState(false)
     const [textinputFocused, settextinputFocused] = useState(true)
     const textInput = useRef(0)
+
+    const contains = ({name}, query) =>{
+       if (name.includes(query)){
+       return true}
+       return false
+    }
+    const handleSearch = (text)=>{
+     const MyData = filter(filterData, user =>{
+      return contains(user, text)
+     })
+     setData([...MyData])
+    }
+
     return (
         <View style={styles.container}>
             <TouchableWithoutFeedback
@@ -34,13 +48,16 @@ export default function SearchComponent({navigation}) {
                     <TouchableWithoutFeedback onPress={() => { setmodalVisible(false) }}>
                         <View style={styles.View1}>
                             <View style={styles.TextInput}>
-                                <Animatable.View>
+                                <Animatable.View 
+                                animation={textinputFocused? "fadeInRight": "fadeInLeft"}
+                                duration={400}
+                                >
                                     <Icon
                                         name={textinputFocused ? "arrow-back" : "search"}
                                         onPress={() => {
                                             if (textinputFocused)
                                                 setmodalVisible(false)
-                                            settextinputFocused(false)
+                                            settextinputFocused(true)
                                         }}
                                         style={styles.icons2}
                                         type='material'
@@ -52,9 +69,17 @@ export default function SearchComponent({navigation}) {
                                     placeholder=''
                                     autoFocus={false}
                                     ref={textInput}
+                                    onFocus={()=>{
+                                        settextinputFocused(true)
+                                    }}
+                                    onBlur = {()=>{
+                                        settextinputFocused(false)
+                                    }}
+                                    onChangeText={handleSearch}
                                 />
 
-                                <Animatable.View>
+                                <Animatable.View animation={textinputFocused? "fadeInLeft": ""}
+                                duration={400}>
                                     <Icon
                                         name={textinputFocused ? "cancel" : null}
                                         onPress={() => {
@@ -76,7 +101,7 @@ export default function SearchComponent({navigation}) {
                         renderItem={({ item}) => (
                             <TouchableOpacity onPress={() => { 
                                 Keyboard.dismiss
-                                navigation.navigate('SearchScreens'),
+                                navigation.navigate('SearchResult', {item: item.name}),
                                 ({item: item.name})
                                 setmodalVisible(false)
                                 settextinputFocused(true)

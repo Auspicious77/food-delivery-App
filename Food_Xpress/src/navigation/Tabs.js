@@ -8,6 +8,7 @@ import MyAccount from '../screens/HomeScreens/MyAccount';
 import MyOrder from '../screens/HomeScreens/MyOrder';
 import SearchScreens from '../screens/HomeScreens/SearchScreens';
 import DrawerNavigator from './DrawerNavigator';
+import ClientStack from './ClientStack';
 
 
 
@@ -48,7 +49,7 @@ export default function Tabs() {
                 />
               );
 
-            case 'SearchScreens':
+            case 'ClientStack':
               return (
                 <Image
                   source={icons.search}
@@ -104,8 +105,8 @@ export default function Tabs() {
       />
 
       <Tab.Screen
-        name="SearchScreens"
-        component={SearchScreens}
+        name="ClientStack"
+        component={ClientStack}
         options={{
           title: null,
           showLabel: true,
