@@ -5,27 +5,27 @@ import { COLORS } from '../global/Styles';
 import DrawerContent from '../components/DrawerContent';
 import Tabs from './Tabs';
 import BusinessConsole from '../screens/HomeScreens/BusinessConsole';
+import Homescreen from '../screens/HomeScreens/Homescreen';
 
 
 const drawer = createDrawerNavigator();
 
 export default function DrawerNavigator(){
     return(
-        <drawer.Navigator
-        drawerContent={props => <DrawerContent {...props}/>}
-        >
+        <drawer.Navigator>
           <drawer.Screen
                 name='Tabs'
                 component={Tabs}
                 options={{
                     title: 'Client',
-                    drawerIcon: ({focused, size}) => 
+                    drawerIcon: ({focused, size}) => ( 
                     <Icon 
-                        type='material-community'
+                        type='material'
                         name='home'
                         color={focused? '#7cc': COLORS.grey2}
                         size={size}
                     />
+                    )
                 }}
             />
 

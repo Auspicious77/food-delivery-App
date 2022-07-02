@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 import AuthStack from './src/navigation/AuthStack';
-import { NavigationContainer } from '@react-navigation/native'
 import RootNavigator from './src/navigation/RootNavigator';
 
 

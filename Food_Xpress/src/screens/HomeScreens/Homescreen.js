@@ -19,7 +19,7 @@ export default function Homescreen({ navigation }) {
   const SCREEN_WIDTH = Dimensions.get('window').width
   return (
     <View style={styles.container}>
-      <Homeheader />
+      <Homeheader navigation={navigation} />
 
       <ScrollView stickyHeaderIndices={[0]}
         showsVerticalScrollIndicator={true}

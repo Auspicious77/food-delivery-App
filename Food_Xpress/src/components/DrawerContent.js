@@ -20,12 +20,10 @@ import { Avatar, Button, Icon } from "@rneui/themed";
 import { images } from '../../constants';
 
 
-export default function DrawerContent() {
+export default function DrawerContent(props) {
     return (
         <View style={styles.container}>
         <DrawerContentScrollView {...props}>
-
-       
             <View>
                 <Avatar
                     rounded

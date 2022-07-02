@@ -4,8 +4,8 @@ import { Icon, withBadge } from '@rneui/themed'
 import { COLORS, parameters } from '../global/Styles'
 
 
-export default function Homeheader() {
-    const BadgeIcon = withBadge(0)(Icon)
+export default function Homeheader({navigation}) {
+    const BadgeIcon = withBadge(1)(Icon)
   return (
     <View style = {styles.header}>
       <View style = {{alignItems: 'center', justifyContent: 'center', marginLeft: 15}}>
@@ -14,6 +14,9 @@ export default function Homeheader() {
             name='menu'
             color={COLORS.white}
             size = {32}
+            onPress = {()=> {
+              navigation.toggleDrawer();
+            }}
         />
       </View>
       

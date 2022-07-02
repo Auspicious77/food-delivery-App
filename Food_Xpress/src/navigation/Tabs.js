@@ -7,7 +7,8 @@ import { icons } from '../../constants';
 import MyAccount from '../screens/HomeScreens/MyAccount';
 import MyOrder from '../screens/HomeScreens/MyOrder';
 import SearchScreens from '../screens/HomeScreens/SearchScreens';
-import HomeStack from './HomeStack';
+import DrawerNavigator from './DrawerNavigator';
+
 
 
 
