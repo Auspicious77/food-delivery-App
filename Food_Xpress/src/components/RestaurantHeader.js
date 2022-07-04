@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { StyleSheet, Text, View,ImageBackground,Animated } from 'react-native'
 import { resturantData } from './Data'
-import {COLORS} from "../global/styles"
+import { COLORS, fonts } from '../global/Styles'
 import {Icon} from '@rneui/themed'
 
 export default function RestaurantHeader({navigation,id}) {

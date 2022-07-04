@@ -58,17 +58,6 @@ export default function AuthStack() {
           headerShown: false
         }}
       />
-
-
-
-      
-<stack.Screen
-        name='DrawerNavigator'
-        component={DrawerNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
     </stack.Navigator>
   )
 }

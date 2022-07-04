@@ -5,7 +5,7 @@ import {Icon} from '@rneui/themed'
 import { images } from '../../constants'
 import ProductCard from './ProductCard'
 
-export default function SearchCard({
+const SearchCard = ({
     OnPressRestaurantCard,
     restaurantName,
     deliveryAvailabe,
@@ -17,7 +17,7 @@ export default function SearchCard({
     averageReview ,
     images,
     productData,
-}) {
+}) => {
   return (
     <View>
             <TouchableOpacity onPress ={OnPressRestaurantCard}>
@@ -89,6 +89,7 @@ export default function SearchCard({
         </View>
   )
 }
+export default SearchCard
 
 const styles = StyleSheet.create({
     view1: {

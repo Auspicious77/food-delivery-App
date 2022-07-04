@@ -24,21 +24,21 @@ export const resturantData = [
      image: images.burger2, averageReview: '4.5', numberofReviews: '600', coordinate: {lat: -34.182939, lng: 20.2918}, discount: 10, deliveryTime: 40, collectTime: 15, foodType: 'Flame grilled burgers', 
      productData: [
     {name: 'Hot Dog', price: 20.80, image: images.hotdog1},
-    {name: 'Burger', price: 70.60, image: images.burger1}
+    {name: 'Burger', price: 50.20, image: images.burger1}
     ], id: 2},
 
     {resturantName: '4D restaurant', farAway: '20.2', businessAddress: "No.2 Opposite Igbo kitchen, Ogbomoso",
      image: images.Welcome3, averageReview: '4.0', numberofReviews: '900', coordinate: {lat: -70.182939, lng: 30.2918}, discount: 10, deliveryTime: 40, collectTime: 15, foodType: 'Flame grilled burgers', 
      productData: [
     {name: 'Chineese grills', price: 20.80, image: images.Shawama3},
-    {name: 'Salad', price: 70.60, image: images.salad1}
+    {name: 'Salad', price: 65.60, image: images.salad1}
     ], id: 3},
 
     {resturantName: 'Amazing Restautant', farAway: '20.2', businessAddress: "No.2 Opposite Igbo kitchen, Ogbomoso",
      image: images.hotdog1, averageReview: '4.2', numberofReviews: '380', coordinate: {lat: -70.182939, lng: 30.2918}, discount: 10, deliveryTime: 40, collectTime: 15, foodType: 'Flame grilled burgers', 
      productData: [
     {name: 'Chineese grills', price: 20.80, image: images.Shawama3},
-    {name: 'Salad', price: 70.60, image: images.salad1}
+    {name: 'Salad', price: 70.60, image: images.salad2}
     ], id: 4},
 ]
 

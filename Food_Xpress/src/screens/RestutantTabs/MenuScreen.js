@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text,StyleSheet,TouchableOpacity } from 'react-native'
-import { COLORS, Icon,} from '@rneui/themed'
-import { COLORS } from '../../global/Styles'
+import { Icon,} from '@rneui/themed'
+import { COLORS, fonts } from '../../global/Styles'
 import { specialData, menuData } from '../../components/Data'
 
 

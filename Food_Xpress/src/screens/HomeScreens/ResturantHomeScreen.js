@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
 import { StyleSheet, Text, View,ScrollView,Dimensions,TouchableOpacity ,Modal} from 'react-native'
 import RestaurantHeader from '../../components/RestaurantHeader';
-import { COLORS } from '../../global/Styles';
+import { COLORS, fonts } from '../../global/Styles';
 import {Icon} from '@rneui/themed'
 import {TabView, TabBar} from 'react-native-tab-view'
 import MenuScreen from '../RestutantTabs/MenuScreen';
+import { resturantData } from '../../components/Data';
 
 
 
@@ -41,13 +42,13 @@ const ResturantHomeScreen = ({navigation,route}) => {
     const UpdateRoute1 =()=>{
         return(
             <View>
-
+            
             </View>
         )
     }
 
     const menuPressed =()=>{
-        // navigation.navigate("MenuProductScreen")
+        //  navigation.navigate("MenuProductScreen")
     }
 
 
@@ -59,27 +60,27 @@ const ResturantHomeScreen = ({navigation,route}) => {
             <ScrollView>
                 <View>
                      <RestaurantHeader id ={id} navigation ={navigation} />
-                     {restaurantsData[id].discount &&
+                     {resturantData[id].discount &&
                      <View style ={styles.view1}>
-                        <Text style ={styles.text1}>GET {restaurantsData[id].discount}% OFF ON FOOD TOTAL</Text>
+                        <Text style ={styles.text1}>GET {resturantData[id].discount}% OFF ON FOOD TOTAL</Text>
                      </View>
                      }
                 <View style ={styles.view2}>
                     <View style ={styles.view3}>
-                        <Text style ={styles.text2}>{restaurantsData[id].restaurantName}</Text>
-                        <Text style ={styles.text3}>{restaurantsData[id].foodType}</Text>
+                        <Text style ={styles.text2}>{resturantData[id].resturantName}</Text>
+                        <Text style ={styles.text3}>{resturantData[id].foodType}</Text>
                         <View style ={styles.view4}>
                             <Icon name ="star" type ="material-community" color = {COLORS.grey3} size = {15} />
-                            <Text style ={styles.text4}>{restaurantsData[id].averageReview}</Text>
-                            <Text style ={styles.text5}>{restaurantsData[id].numberOfReview}</Text>
+                            <Text style ={styles.text4}>{resturantData[id].averageReview}</Text>
+                            <Text style ={styles.text5}>{resturantData[id].numberofReviews}</Text>
                             <Icon name ="map-marker" type ="material-community" color = {COLORS.grey3} size = {15} />
-                            <Text style ={styles.text6}>{restaurantsData[id].farAway} mi away</Text> 
+                            <Text style ={styles.text6}>{resturantData[id].farAway} mi away</Text> 
                         </View>
                     </View>
                     <View style ={styles.view5}>
                        <Text style = {styles.text6}>Collect</Text>
                        <View style ={styles.view7}>
-                            <Text style ={styles.text7}>{restaurantsData[id].collectTime}</Text>
+                            <Text style ={styles.text7}>{resturantData[id].collectTime}</Text>
                             <Text style ={styles.text8}>min</Text>
                        </View>
 
@@ -87,7 +88,7 @@ const ResturantHomeScreen = ({navigation,route}) => {
                     <View style ={styles.view8}>
                         <Text style ={styles.text6}>Delivery</Text>
                         <View style ={styles.view9}>
-                            <Text style = {styles.text9}>{restaurantsData[id].deliveryTime}</Text>
+                            <Text style = {styles.text9}>{resturantData[id].deliveryTime}</Text>
                             <Text style ={styles.text11}>min</Text>
                         </View>
 
@@ -132,8 +133,7 @@ export default ResturantHomeScreen
 
 const styles = StyleSheet.create({
 
-    container:{flex:1,
-            paddingTop:20
+    container:{flex:1,          
         },
     
     view1:{
@@ -190,7 +190,8 @@ const styles = StyleSheet.create({
             },
     
       view5:{ flex:3,
-              alignItems:"center"
+              alignItems:"center",
+             
             },
     
       text6:{fontSize:15,
@@ -203,6 +204,8 @@ const styles = StyleSheet.create({
             alignItems:"center",
             borderRadius:20,
             justifyContent:"space-around",
+            backgroundColor:COLORS.button,
+            color: COLORS.white
             },
     
       text7:{fontSize:16,
@@ -227,7 +230,7 @@ const styles = StyleSheet.create({
     
     view9:{width:40,
           height:40,
-          backgroundColor:COLORS.buttons,
+          backgroundColor:COLORS.button,
           alignItems:"center",
           borderRadius:20,
           justifyContent:"space-around",
@@ -248,7 +251,7 @@ const styles = StyleSheet.create({
            backgroundColor:COLORS.pagebackground
           },
     
-    view11:{backgroundColor:COLORS.buttons,
+    view11:{backgroundColor:COLORS.button,
             height:50,
             alignContent:"center",
             marginBottom:0,
@@ -281,7 +284,7 @@ const styles = StyleSheet.create({
           },
     
     tab:{ paddingTop :0,
-          backgroundColor:COLORS.buttons,
+          backgroundColor:COLORS.button,
           justifyContent:"space-between",
           alignItems:"center"
           },
@@ -302,7 +305,7 @@ const styles = StyleSheet.create({
     view14:{flexDirection:"row",
     alignItems:"center",
     padding:10,
-    backgroundColor:COLORS.buttons,
+    backgroundColor:COLORS.button,
     top:0,
     left:0,
     right:0,

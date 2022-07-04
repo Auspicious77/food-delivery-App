@@ -18,7 +18,7 @@ const SearchResult = ({ navigation, route }) => {
                 renderItem={({ item, index }) => (
                 <SearchCard
                 screenwidth={SCREEN_WIDTH}
-                images={resturantData[0].image}
+                images={resturantData[1].image}
                 averageReview={resturantData[1].averageReview}
                 numberOfReview={resturantData[0].numberofReviews}
                 restaurantName={resturantData[0].resturantName}
