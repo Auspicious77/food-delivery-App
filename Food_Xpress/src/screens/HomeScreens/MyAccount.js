@@ -8,14 +8,18 @@ import {
   ScrollView,
   Dimensions,
   ImageBackground,
-  Switch
+  Switch,
+  Alert
 } from 'react-native';
-import React, {useState} from 'react';
+
+import auth from '@react-native-firebase/auth'
+import React, {useState, useContext} from 'react';
 import { images } from '../../../constants';
 import icons from '../../../constants';
 import { SIZES } from '../../global/Styles';
 import { COLORS } from '../../global/Styles';
 import { Icon, Avatar } from "@rneui/themed";
+import { SignInContext } from '../../Contexts/AuthContext';
 
 
 
@@ -23,6 +27,20 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 
 export default function MyAccount({navigation}) {
+const {dispatchSignedIn} = useContext(SignInContext)
+async function signOut(){ 
+  try {
+    auth()
+    .signOut()
+    .then(
+      ()=>{console.log("User Logout Successfullly")
+      dispatchSignedIn({type:"UPDATE_SIGN_IN", payload:{userToken: null}})
+    })
+  } catch(error) {
+    Alert.alert(error.code)
+  }
+}
+
   const [More, setMore] = useState([
     {
       id: '1',
@@ -81,12 +99,12 @@ export default function MyAccount({navigation}) {
       onPress: () => navigation.navigate('Terms'),
     },
     {
-      id: '7',
+      id: '8',
       name: 'Sign Out',
       info: 'Remove Your Current credentials',
       image: 'Shawama',
       icon: 'logout-variant',
-      onPress: () => navigation.navigate('SignOut'),
+      onPress: () => signOut('SignOut'),
     },
   ]);
 
@@ -153,9 +171,7 @@ export default function MyAccount({navigation}) {
                     borderRadius: SIZES.radius,
                     marginVertical: SIZES.base,
                     flexDirection: 'row',
-                    alignItems: 'center',
-                    // justifyContent: 'space-around',
-                    // alignSelf:'baseline'
+                    alignItems: 'center'
                   }}
                   onPress={item.onPress}>
                    <Icon
@@ -183,10 +199,7 @@ export default function MyAccount({navigation}) {
                       {item.info}
                     </Text>
                   </View>
-                  {/* <Image
-                  source={icons[item.icon]}
-                  style={{width: 25, height: 25, left: SIZES.padding * 2}}
-                /> */}
+                
                 </TouchableOpacity>
               </View>
             )}

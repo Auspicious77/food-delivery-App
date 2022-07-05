@@ -5,7 +5,6 @@ import { COLORS } from '../global/Styles';
 import DrawerContent from '../components/DrawerContent';
 import Tabs from './Tabs';
 import BusinessConsole from '../screens/HomeScreens/BusinessConsole';
-import Homescreen from '../screens/HomeScreens/Homescreen';
 
 
 const drawer = createDrawerNavigator();

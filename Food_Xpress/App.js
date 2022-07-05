@@ -10,6 +10,8 @@ import {
 
 import AuthStack from './src/navigation/AuthStack';
 import RootNavigator from './src/navigation/RootNavigator';
+import { SignInContextProvider } from './src/Contexts/AuthContext';
+
 
 
 
@@ -17,14 +19,12 @@ import RootNavigator from './src/navigation/RootNavigator';
 
 export default function App(){
   return(
-   
+   <SignInContextProvider>
     <View style = {styles.container}>
-    <StatusBar barStyle= "light-content" backgroundColor={'#ff8c52'}/>
-    
+    <StatusBar barStyle= "light-content" backgroundColor={'#ff8c52'}/>   
      <RootNavigator/>
-    
     </View>
-  
+    </SignInContextProvider> 
   )
 }
 

@@ -1,15 +1,28 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, {useLayoutEffect} from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import SearchScreens from '../screens/HomeScreens/SearchScreens';
 import SearchResult from '../screens/HomeScreens/SearchResult';
 import ResturantHomeScreen from '../screens/HomeScreens/ResturantHomeScreen';
+import MenuProductScreen from '../screens/HomeScreens/MenuProductScreen'
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+
 
 
 
 const stack = createNativeStackNavigator();
 
-export default function ClientStack() {
+export default function ClientStack({navigation, route}) {
+ useLayoutEffect(() => {
+   const routeName = getFocusedRouteNameFromRoute(route)
+   if (routeName == "ResturantHomeScreen" || "MenuProductScreen") {
+    navigation.setOptions({tabBarVisible: false})
+   } else{
+    navigation.setOptions({tabBarVisible: true})
+
+   }
+    },
+    [navigation, route])
     return (
         <stack.Navigator>
             <stack.Screen
@@ -33,6 +46,14 @@ export default function ClientStack() {
                 component={ResturantHomeScreen}
                 options={{
                     headerShown: false,
+                }}
+            />
+
+            <stack.Screen
+                name='MenuProductScreen'
+                component={MenuProductScreen}
+                options={{
+                    headerShown: false
                 }}
             />
         </stack.Navigator>

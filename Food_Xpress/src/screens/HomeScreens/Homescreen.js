@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
   },
   floatbotton: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 15,
     right: 15,
     backgroundColor: COLORS.white,
     elevation: 10,

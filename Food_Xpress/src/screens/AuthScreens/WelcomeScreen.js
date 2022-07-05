@@ -48,7 +48,9 @@ export default function WelcomeScreen({navigation}) {
                     <FormButton labelText='SIGN IN' handleOnPress={()=>navigation.navigate('SigninScreen')}/>
                 </View>
                 <View style={{ marginHorizontal: SIZES.base, marginVertical: 10 }}>
-                    <FormButton labelText='CREATE AN ACCOUNT' isPrimary= {false}/>
+                    <FormButton labelText='CREATE AN ACCOUNT' isPrimary= {false}
+                        handleOnPress={()=>navigation.navigate('SignUpScreen')}
+                    />
                 </View>
             </View>
         </View>

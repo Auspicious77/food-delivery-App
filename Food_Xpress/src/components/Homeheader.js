@@ -5,17 +5,17 @@ import { COLORS, parameters } from '../global/Styles'
 
 
 export default function Homeheader({navigation}) {
-    const BadgeIcon = withBadge(1)(Icon)
+    const BadgeIcon = withBadge(0)(Icon)
   return (
     <View style = {styles.header}>
       <View style = {{alignItems: 'center', justifyContent: 'center', marginLeft: 15}}>
         <Icon 
-            type='material-community'
+            type='material'
             name='menu'
             color={COLORS.white}
             size = {32}
             onPress = {()=> {
-              navigation.toggleDrawer();
+              console.log("Pressed")
             }}
         />
       </View>

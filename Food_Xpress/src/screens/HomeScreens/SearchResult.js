@@ -18,16 +18,16 @@ const SearchResult = ({ navigation, route }) => {
                 renderItem={({ item, index }) => (
                 <SearchCard
                 screenwidth={SCREEN_WIDTH}
-                images={resturantData[1].image}
-                averageReview={resturantData[1].averageReview}
-                numberOfReview={resturantData[0].numberofReviews}
-                restaurantName={resturantData[0].resturantName}
-                farAway={resturantData[0].farAway}
-                businessAddress={resturantData[0].businessAddress}
+                images={item.image}
+                averageReview={item.averageReview}
+                numberOfReview={item.numberofReviews}
+                restaurantName={item.resturantName}
+                farAway={item.farAway}
+                businessAddress={item.businessAddress}
                 productData={item.productData}
                 OnPressRestaurantCard={() => {
                     navigation.navigate("ResturantHomeScreen",
-                        { id: index, restaurant: item.resturantName })
+                    {id: index, restaurant: item.resturantName })
                 }}
 
             />

@@ -19,7 +19,6 @@ export default function RestaurantHeader({navigation,id}) {
         setLiked(!liked)
         setCounter(index2)
     }
-
     useEffect(()=>{
         if(liked == true){
             Animated.spring(currentValue,{
@@ -38,6 +37,8 @@ export default function RestaurantHeader({navigation,id}) {
         }
     },[liked])
 
+
+
     return (
         <View style ={styles.container}>
             <ImageBackground
@@ -45,8 +46,10 @@ export default function RestaurantHeader({navigation,id}) {
                 source ={resturantData[id].image}
                 
                 >
-
+             
                 <View style ={styles.view1}>
+
+                 {/* Goback icon */}
                     <View style ={styles.view2}>
                         <Icon 
                             name ="arrow-left"
@@ -56,6 +59,8 @@ export default function RestaurantHeader({navigation,id}) {
                             onPress ={()=>navigation.goBack()}
                         />
                     </View>
+
+                    {/* Favourite icon */}
                     <View style ={styles.view3}>
                         <Icon 
                                 name ={liked && (index2 == counter) ? "favorite" : "favorite-border"}
@@ -63,10 +68,12 @@ export default function RestaurantHeader({navigation,id}) {
                                 color = 'red'
                                 size = {30}
                                 onPress ={likeHander}
+                                
                             />
                     </View>
 
                 </View>
+                {/* Animation Part */}
                 <View style ={styles.view4}>
                     {visible && (index2 == counter) &&
                         <Animated.View style = {{transform:[{scale:currentValue}]}}>
@@ -88,7 +95,8 @@ container:{height:150,
 
 view1: {flexDirection:"row",
         alignItems:"baseline",
-       justifyContent:"space-between"
+       justifyContent:"space-between",
+       
       },
 
 view2:{margin:10,
@@ -98,10 +106,11 @@ view2:{margin:10,
        alignItems:"center",
        justifyContent:"center",
        borderRadius:20,
+       marginTop: -4
       },
 
 view3:{marginTop:0,
-       margin:10,
+       margin:13,
        width:40,
        height:40,
        backgroundColor:COLORS.cardbackground,
