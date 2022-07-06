@@ -4,7 +4,7 @@ import { menuData, productData } from '../../components/Data';
 import MenuCard from '../../components/MenuCard';
 import { COLORS } from '../../global/Styles';
 
-export function Route1() {
+export function Route1({navigation}) {
   return (
     <View style={{flex: 1}}>
        <View style={styles.view2}>
@@ -13,7 +13,7 @@ export function Route1() {
         data={productData}
         keyExtractor={(item, index) =>index.toString()}
         renderItem={({item, index}) =>(
-            <TouchableOpacity>
+            <TouchableOpacity  onPress={()=>{navigation.navigate('PreferenceScreen', {index})}}>
             <MenuCard
                 productName={item.meal}
                 images={item.image}

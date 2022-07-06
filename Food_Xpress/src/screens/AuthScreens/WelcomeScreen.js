@@ -1,14 +1,34 @@
 import { View, Text, StyleSheet, Dimensions, TextInput, Animated, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { COLORS, SIZES } from '../../global/Styles'
 import { Icon } from "@rneui/themed";
 import Header from '../../components/Header'
 import Swiper from 'react-native-swiper';
 import { images } from '../../../constants';
 import FormButton from '../../global/FormButton';
+import { SignInContext } from '../../Contexts/AuthContext';
+import auth from '@react-native-firebase/auth';
 
 
-export default function WelcomeScreen({navigation}) {
+export default function WelcomeScreen({ navigation }) {
+
+    const { dispatchSignedIn } = useContext(SignInContext)
+
+    // Query the firebase
+    useEffect(() => {
+        auth().onAuthStateChanged((user) => {
+            if (user) {
+                // dispatch user to the local storage (reducer)
+                dispatchSignedIn({ type: 'UPDATE_SIGN_IN', payload: { userToken: "signed-in" } })
+            }
+            else{
+                // the user has signed out or didn't sign in to firebase
+                dispatchSignedIn({ type: 'UPDATE_SIGN_IN', payload: { userToken: null } })     
+            }
+        })
+
+    }, [])
+
     return (
         <View style={{ flex: 1 }}>
             <Header />
@@ -45,11 +65,11 @@ export default function WelcomeScreen({navigation}) {
 
                 {/* Button */}
                 <View style={{ marginHorizontal: SIZES.base, marginVertical: SIZES.padding, marginTop: -20 }}>
-                    <FormButton labelText='SIGN IN' handleOnPress={()=>navigation.navigate('SigninScreen')}/>
+                    <FormButton labelText='SIGN IN' handleOnPress={() => navigation.navigate('SigninScreen')} />
                 </View>
                 <View style={{ marginHorizontal: SIZES.base, marginVertical: 10 }}>
-                    <FormButton labelText='CREATE AN ACCOUNT' isPrimary= {false}
-                        handleOnPress={()=>navigation.navigate('SignUpScreen')}
+                    <FormButton labelText='CREATE AN ACCOUNT' isPrimary={false}
+                        handleOnPress={() => navigation.navigate('SignUpScreen')}
                     />
                 </View>
             </View>
