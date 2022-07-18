@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Image } from 'react-native'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { COLORS } from '../../global/Styles'
 import { images } from '../../../constants'
 import { Icon, CheckBox } from '@rneui/themed'
@@ -14,19 +14,69 @@ export default class PreferenceScreen extends Component {
         this.state = {
             preference: productData[this.props.route.params.index].preferenceData,
             required: productData[this.props.route.params.index].required,
-            minimun_quatity: productData[this.props.route.params.index].minimum_quatity
+            minimun_quantity: productData[this.props.route.params.index].minimum_quatity,
+            counter: productData[this.props.route.params.index].counter,
+
+            toCart: productData[this.props.route.params.index].price,
+            newCart: [],
+            totalPrice: productData[this.props.route.params.index].price,
+            increaseCart: 1
+
+
+        };
+
+
+    }
+     Cart = (item)=>{
+       
+     if(this.state.newCart.length == 0) {
+        this.state.newCart.push(item)
+
+     }
+     else{
+       let finditem = this.state.newCart.filter(li=>li.id===item.id)
+       if(finditem.length>0){
+       let th = this.state.newCart.filter(li=>li.id!==item.id)
+       this.state.newCart = [...th]
+    }
+       else{
+        if(item.checked)
+        this.state.newCart.push(item)
+        
+       }
+       
+     }
+     let tot = this.state.newCart.length > 0 ? this.state.newCart.reduce((acc,ite)=> acc+ite.price, 0): 0
+    //   this.state.totalPrice = this.state.toCart + tot
+      this.setState({...this.state, totalPrice: (this.state.toCart + tot)*this.state.increaseCart})
+     console.log(this.state.totalPrice)
+
+    }
+    increase=(incr)=>{
+        var value = this.state.increaseCart
+        if (incr === 'increase') {
+         value+=1
+            this.setState({...this.state, totalPrice: this.state.totalPrice * value, increaseCart: value})
+        }else {
+            if(this.state.increaseCart === 1) return; else {
+                value-=1
+                this.setState({...this.state, totalPrice: this.state.totalPrice * value, increaseCart: value})
+   
+            }
         }
+    //  this.state.increaseCart
     }
     render() {
         const { index } = this.props.route.params
-        const { meal, details, price } = productData[index]
+        const { meal, details, price, image } = productData[index]
 
+   
         return (
             <View style={styles.container}>
                 <ScrollView>
                     <View style={styles.header}>
                         <Image
-                            source={images.Welcome3}
+                            source={image}
                             style={styles.backgroundImage}
                         />
                     </View>
@@ -83,30 +133,90 @@ export default class PreferenceScreen extends Component {
                                             &&
                                             <View style={styles.view9}>
                                                 <Text style={styles.text7}>{
-                                                    this.state.minimun_quatity[this.state.preference.indexOf(item)]
+                                                    this.state.minimun_quantity[this.state.preference.indexOf(item)]
                                                 } REQUIRED</Text>
                                             </View>
                                         }
                                     </View>
 
                                     <View style={styles.view10}>
+
                                         {
-                                            item.map(items => <View style={styles.view4}>
-                                                <View style={styles.view19}>
-                                                    <View style={styles.view6}>
-                                                        <CheckBox
-                                                            center
-                                                            checkedIcon="check-square-o"
-                                                            uncheckedIcon="square-o"
-                                                            checked={false}
-                                                            checkedColor={COLORS.button}
-                                                        />
-                                                        <Text style={{color: COLORS.grey2, marginLeft: -10}}>
-                                                        {items.name}</Text>
+                                            item.map(items =>
+                                                <TouchableOpacity key={items.id}
+                                                    onPress={() => {
+                                                        const id = this.state.preference.indexOf(item)
+                                                        // if minimum quantity is not null i.e allowed to select items
+                                                        if (this.state.minimun_quantity[id] !== null) {
+                                                            const check = item.filter(items => items.checked? items: null);
+                                                            this.state.preference[id].forEach(i => {
+                                                               
+                                                                if (i.id === items.id) {
+                                                                    //check if the number selected is not > than miminum quatity in the database
+                                                                    if (check.length < this.state.minimun_quantity[id]) 
+                                                                   
+                                                                    
+                                                                    
+                                                                    {
+                                                                        // console.log(price+i.price)
+                                                                        i.checked = !i.checked
+                                                                        this.Cart(i)
+                                                                       
+
+                                                                    }
+                                                                    else {
+                                                                        i.checked = false
+                                                                        this.Cart(i)
+
+                                                                    }
+                                                                }
+                                                            })
+                                                            //one selection has taken place
+                                                            this.state.counter[id] = this.state.counter[id] + 1;
+                                                            this.setState({
+                                                                //update preference and counter in the state
+                                                                preference: [...this.state.preference],
+                                                                counter: [...this.state.counter]
+                                                            })
+
+                                                        }
+
+                                                        // if not allowed to select item i.e minimum quantity is null
+                                                        else {
+                                                            this.state.preference[id].forEach(i => {
+                                                                if (i.id === items.id) {
+                                                                // no further selection
+                                                                    i.checked = !i.checked
+                                                                    this.Cart(i)
+
+                                                                }
+                                                            })
+                                                           //update state of preference
+                                                            this.setState({ preference: [...this.state.preference] })
+                                                        }
+                                                      
+                                                        
+                                                    }}>
+                                                    <View style={styles.view4}>
+                                                        <View style={styles.view19}>
+                                                            <View style={styles.view6}>
+                                                                <CheckBox
+                                                                    center
+                                                                    checkedIcon="check-square-o"
+                                                                    uncheckedIcon="square-o"
+                                                                    checked={items.checked}
+                                                                    checkedColor={COLORS.button}
+                                                                />
+                                                                <Text style={{ color: COLORS.grey2, marginLeft: -10 }}>
+                                                                    {items.name}</Text>
+                                                            </View>
+                                                            <Text style={styles.text6}>$ {items.price.toFixed(2)}</Text>
+                                                        </View>
+
                                                     </View>
-                                                    <Text style={styles.text6}>$ {items.price.toFixed(2)}</Text>
-                                                </View>
-                                            </View>)
+                                                </TouchableOpacity>
+                                            )
+
                                         }
                                     </View>
                                 </View>
@@ -115,42 +225,44 @@ export default class PreferenceScreen extends Component {
                     </View>
                 </ScrollView>
 
-            {/* Quantity */}
+                {/* Quantity */}
                 <View style={styles.view13}>
-                   <Text style={styles.text11}>
-                    Quantity
-                   </Text>
+                    <Text style={styles.text11}>
+                        Quantity
+                    </Text>
                 </View>
 
                 <View style={styles.view14}>
                     <View style={styles.view15}>
-                    <Icon
+                        <Icon
                             name='remove'
                             type='material'
                             color={COLORS.black}
                             size={25}
-                            onPress={() => {}}
+                            onPress={()=>this.increase()}
                         />
                     </View>
-                    <Text style={styles.text9}>1</Text>
+                    <Text style={styles.text9}>{this.state.increaseCart}</Text>
                     <View style={styles.view16}>
-                    <Icon
+                        <Icon
                             name='add'
                             type='material'
                             color={COLORS.black}
                             size={25}
-                            onPress={() => {}}
-                        /> 
+                            onPress={()=>this.increase('increase')}
+
+                        />
                     </View>
                 </View>
 
                 {/* Button */}
-
+                {   
                 <View style={styles.view17}>
-                   <View style={styles.view18}>
-                      <Text style={styles.text10}>Add 1 to Cart $78.21</Text>
-                   </View>
+                    <View style={styles.view18}>
+                        <Text style={styles.text10}>Add 1 to Cart {this.state.totalPrice.toFixed(2)} </Text>
+                    </View>
                 </View>
+                }
             </View>
         )
     }

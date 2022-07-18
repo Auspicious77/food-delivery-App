@@ -13,7 +13,7 @@ import { Route1, Route2, Route3, Route4, Route5, Route6, Route7, Route8 } from '
 const SCREEN_WIDTH = Dimensions.get('window').width
 const initialLayout = SCREEN_WIDTH;
 
-const ResturantHomeScreen = ({ navigation, route,}) => {
+const ResturantHomeScreen = ({ navigation, route, params}) => {
 
     const { id, restaurant } = route.params
     const [routes] = useState([

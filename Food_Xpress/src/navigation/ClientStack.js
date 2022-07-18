@@ -7,7 +7,7 @@ import ResturantHomeScreen from '../screens/HomeScreens/ResturantHomeScreen';
 import MenuProductScreen from '../screens/HomeScreens/MenuProductScreen'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import PreferenceScreen from '../screens/HomeScreens/PreferenceScreen';
-
+import Homescreen from '../screens/HomeScreens/Homescreen';
 const stack = createNativeStackNavigator();
 
 export default function ClientStack({ navigation, route }) {
@@ -58,6 +58,13 @@ export default function ClientStack({ navigation, route }) {
             <stack.Screen
                 name='PreferenceScreen'
                 component={PreferenceScreen}
+                options={{
+                    headerShown: false
+                }}
+            />
+             <stack.Screen
+                name='Homescreen'
+                component={Homescreen}
                 options={{
                     headerShown: false
                 }}

@@ -12,7 +12,7 @@ import FoodCard from '../../components/FoodCard'
 import CountDown from 'react-native-countdown-component'
 
 
-export default function Homescreen({ navigation }) {
+export default function Homescreen({ navigation, route }) {
   const [delivery, setDelivery] = useState(true)
   const [indexCheck, setIndexCheck] = useState([0])
 
@@ -121,7 +121,7 @@ export default function Homescreen({ navigation }) {
 
           {/* CountDown */}
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ marginLeft: 15, fontSize: 16, marginTop: -10, marginRight: 5 }}
+            <Text style={{ marginLeft: 15, fontSize: 16, marginTop: -10, marginRight: 5, color: COLORS.grey2 }}
             >Options changing in</Text>
             <CountDown
               until={3600}
@@ -139,16 +139,21 @@ export default function Homescreen({ navigation }) {
             showsHorizontalScrollIndicator={false}
             data={resturantData}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <View style={{ marginRight: 5 }}>
                 <FoodCard
                   screenWidth={SCREEN_WIDTH * 0.8}
                   images={item.image}
-                  resturantName={item.resturantName}
+                  restaurantName={item.resturantName}
                   farAway={item.farAway}
                   businessAddress={item.businessAddress}
                   averageReviews={item.averageReview}
                   numberOfReviews={item.numberofReviews}
+                  onPressFoodCard={() => {
+                    navigation.navigate("ResturantHomeScreen",
+                    {id: index, restaurant: item.resturantName })
+                }}
+                 
                 />
               </View>
             )}
@@ -168,16 +173,20 @@ export default function Homescreen({ navigation }) {
             showsHorizontalScrollIndicator={false}
             data={resturantData}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <View style={{ marginRight: 5 }}>
                 <FoodCard
                   screenWidth={SCREEN_WIDTH * 0.8}
                   images={item.image}
-                  resturantName={item.resturantName}
+                  restaurantName={item.resturantName}
                   farAway={item.farAway}
                   businessAddress={item.businessAddress}
                   averageReviews={item.averageReview}
                   numberOfReviews={item.numberofReviews}
+                  onPressFoodCard={()=>{
+                    navigation.navigate("ResturantHomeScreen",
+                    {id: index, restaurant: item.resturantName })
+                }}
                 />
               </View>
             )}
@@ -191,7 +200,7 @@ export default function Homescreen({ navigation }) {
           </View>
           {
 
-            resturantData.map(item => (
+            resturantData.map((item, index) => (
               <View key={item.id} style={{ paddingBottom: 20 }}>
                 <FoodCard
                   screenWidth={SCREEN_WIDTH * 0.95}
@@ -201,6 +210,10 @@ export default function Homescreen({ navigation }) {
                   businessAddress={item.businessAddress}
                   averageReviews={item.averageReview}
                   numberOfReviews={item.numberofReviews}
+                  onPressFoodCard={() => {
+                    navigation.navigate("ResturantHomeScreen",
+                    {id: index, restaurant: item.resturantName })
+                }}
                 />
               </View>
             ))

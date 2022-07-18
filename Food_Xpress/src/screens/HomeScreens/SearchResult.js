@@ -16,6 +16,7 @@ const SearchResult = ({ navigation, route }) => {
                 data={resturantData}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => (
+               <View>
                 <SearchCard
                 screenwidth={SCREEN_WIDTH}
                 images={item.image}
@@ -31,6 +32,7 @@ const SearchResult = ({ navigation, route }) => {
                 }}
 
             />
+            </View>
             )}
 
             ListHeaderComponent ={
